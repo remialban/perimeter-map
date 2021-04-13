@@ -4,7 +4,7 @@
 With this application, you can know the limit of a perimeter of 10 km around your house or other addresses (only french addresses). This application is very useful currently with the current health situation.
 
 ## How to download
-To use this application, you must downlaod this repository with this command :
+To use this application, you must download this repository with this command :
 ```
 git clone https://github.com/remialban/perimeter-map.git
 ```
