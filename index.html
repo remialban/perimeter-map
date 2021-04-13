@@ -13,6 +13,7 @@
 </head>
 
 <body class="container">
+    <noscript>Vous devez activer Javascript dans votre navigateur pour pouvoir utiliser cette application</noscript>
     <h1 class="mt-3">Périmètre 10 km</h1>
     <hr>
     <p>Saisissez une adresse :</p>
@@ -119,7 +120,7 @@
                 var element = $(this)
                 $("#address-input").val(element.text())
                 $("#list").empty()
-                mise_a_jour_map(element.data("longitude"), element.data("latitude"))
+                mise_a_jour_map(element.data("longitude"), element.data("latitude"), element.text())
                     // your function here
             });
 
@@ -148,18 +149,19 @@
             }).addTo(mymap)
             var marker = L.marker([43.927063, 2.198952]).addTo(mymap);
 
-            function mise_a_jour_map(long, lat) {
+            function mise_a_jour_map(long, lat, address) {
                 marker.setLatLng([long, lat])
                 circle.setLatLng([long, lat])
                 mymap.setView([long, lat], 11);
                 console.log(long)
                 setCookie("longitude", long, 99999)
                 setCookie("latitude", lat, 99999)
+                setCookie("address", address, 99999)
             }
             if (getCookie("longitude") == null) {
 
             } else {
-                mise_a_jour_map(getCookie("longitude"), getCookie("latitude"))
+                mise_a_jour_map(getCookie("longitude"), getCookie("latitude"), getCookie("address"))
             }
             //mise_a_jour_map(50, 2)
             $("body").click(() => {
