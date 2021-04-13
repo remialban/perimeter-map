@@ -126,10 +126,15 @@
                 circle.setLatLng([long, lat])
                 mymap.setView([long, lat], 11);
                 console.log(long)
-                setCookie("longitude", long, 9)
-                setCookie("latitude", lat, 9)
+                setCookie("longitude", long, 99999)
+                setCookie("latitude", lat, 99999)
+                setAdress
             }
+            if (getCookie("longitude") == null) {
 
+            } else {
+                mise_a_jour_map(getCookie("longitude"), getCookie("latitude"))
+            }
             //mise_a_jour_map(50, 2)
             $("body").click(() => {
                 $("#list").empty()
