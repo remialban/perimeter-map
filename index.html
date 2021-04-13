@@ -42,7 +42,9 @@
                     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
                     expires = "; expires=" + date.toUTCString();
                 }
-                document.cookie = name + "=" + (value || "") + expires + "; path=/perimeter-map;domain=remialban.github.io";
+                //document.cookie = name + "=" + (value || "") + expires + "; path=/perimeter-map;domain=remialban.github.io";
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+
             }
 
             function getCookie(name) {
@@ -123,11 +125,12 @@
                 marker.setLatLng([long, lat])
                 circle.setLatLng([long, lat])
                 mymap.setView([long, lat], 11);
+                console.log(long)
                 setCookie("longitude", long, 9)
                 setCookie("latitude", lat, 9)
             }
 
-            mise_a_jour_map(50, 2)
+            //mise_a_jour_map(50, 2)
             $("body").click(() => {
                 $("#list").empty()
             })
