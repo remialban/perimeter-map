@@ -28,6 +28,23 @@
     <br>
 
     <div id="mapid" style="height: 500px"></div>
+    <div class="modal" id="modalCookie" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cookies</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Ce site utilise des cookies qui sont indispensables au bon fonctionnement du site. Les cookies stockent des informations sur votre ordinateur. Ces données sont présente uniquement sur votre ordinateur et elles ne sont ni traitées,
+                        ni stockées et ni partagées avec des serveurs externes.</p>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="buttonAcceptCookie">J'accèpte</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -35,6 +52,16 @@
 
     <script>
         $(document).ready(function() {
+            $("#buttonAcceptCookie").click(() => {
+                setCookie("cookie_accepted", "true", 99999)
+            })
+
+            if (getCookie("cookie_accepted") == "true") {
+                var myModal = new bootstrap.Modal(document.getElementById('modalCookie'))
+                myModal.show()
+            }
+
+
             function setCookie(name, value, days) {
                 var expires = "";
                 if (days) {
