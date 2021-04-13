@@ -27,12 +27,35 @@
     </div>
     <br>
 
-    <div id="mapid" style="height: 500px"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
     <script>
         $(document).ready(function() {
+            function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            }
+
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+
+
 
             var inputAddress = document.getElementById("address-input")
             var list = document.getElementById("list")
@@ -50,6 +73,7 @@
                                 $("#list").append(
                                     "<a href='#' class='list-group-item list-group-item-action item_address' data-latitude='" + address.geometry.coordinates[0] + "'' data-longitude='" + address.geometry.coordinates[1] + "'>" + address.properties.label + "</a>"
                                 )
+
                             })
                         })
 
@@ -96,14 +120,15 @@
                 marker.setLatLng([long, lat])
                 circle.setLatLng([long, lat])
                 mymap.setView([long, lat], 11);
-
+                setCookie("longitude", long, 9)
+                setCookie("latitude", lat, 9)
             }
 
             mise_a_jour_map(50, 2)
             $("body").click(() => {
                 $("#list").empty()
             })
-
+            console.log(getCookie("longitude"))
         });
     </script>
 </body>
