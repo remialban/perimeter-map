@@ -56,7 +56,7 @@
                 setCookie("cookie_accepted", "true", 99999)
             })
 
-            if (getCookie("cookie_accepted") == "true") {
+            if (getCookie("cookie_accepted") != "true") {
                 var myModal = new bootstrap.Modal(document.getElementById('modalCookie'))
                 myModal.show()
             }
