@@ -63,7 +63,6 @@ $(document).ready(function() {
 
     // $("#toastCookie").toast("show");
     function api() {
-        console.log(addressInput.val())
         fetch(
             "https://api-adresse.data.gouv.fr/search/?q=" + addressInput.val()
         ).then((response) => {
