@@ -69,6 +69,7 @@ $(document).ready(function() {
         ).then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
+                    addresses = data.features;
                     listAddresses.empty();
                     addresses.map((address) => {
                         listAddresses.append(
