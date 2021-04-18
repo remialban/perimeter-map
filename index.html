@@ -153,20 +153,27 @@
                 circle.setLatLng([long, lat])
                 mymap.setView([long, lat], 11);
                 console.log(long)
-                setCookie("longitude", long, 99999)
-                setCookie("latitude", lat, 99999)
-                setCookie("address", address, 99999)
+
                 if (address != null) {
                     $("#address-input").val(address)
-                } else {
-                    address = "Paris"
+                    setCookie("longitude", long, 99999)
+                    setCookie("latitude", lat, 99999)
+                    setCookie("address", address, 99999)
+                    marker.bindPopup(address)
                 }
+            }
 
-                marker.bindPopup(address)
-
+            function onLocationFound(e) {
+                console.log(e)
+                mise_a_jour_map(e.latitude, e.longitude, null)
             }
             if (getCookie("longitude") == null) {
-                mise_a_jour_map(48.856614, 2.3522219, null)
+                mise_a_jour_map(48.856614, 2.3522219)
+                mymap.locate({
+                    setView: true,
+                    maxZoom: 18
+                });
+                mymap.on('locationfound', onLocationFound);
             } else {
                 mise_a_jour_map(getCookie("longitude"), getCookie("latitude"), getCookie("address"))
             }
