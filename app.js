@@ -10,7 +10,7 @@ function setCookie(name, value, days) {
         "=" +
         (value || "") +
         expires +
-        "; path=/perimeter-map;domain=remialban.github.io";
+        "; path=/perimeter-map;domain=" + window.location.host;
 }
 
 function getCookie(name) {
