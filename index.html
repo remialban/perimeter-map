@@ -131,7 +131,7 @@
             $("#address-input").on("input", function() {
                 api()
             });
-            var mymap = L.map('mapid').setView([43.927063, 2.198952], 11);
+            var mymap = L.map('mapid');
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                 maxZoom: 18,
@@ -141,13 +141,13 @@
                 accessToken: 'pk.eyJ1IjoicmVtaWFsYmFuODEiLCJhIjoiY2tuZGxkMng2MWlmMTJ2bXJtb3BmMTF3OSJ9.2ElAN4jWXxxMaLIhXyxV-Q'
             }).addTo(mymap)
 
-            var circle = L.circle([43.927063, 2.198952], {
+            var circle = L.circle([0, 0], {
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5,
                 radius: 10000
             }).addTo(mymap)
-            var marker = L.marker([43.927063, 2.198952]).addTo(mymap);
+            var marker = L.marker([0, 0]).addTo(mymap);
 
             function mise_a_jour_map(long, lat, address) {
                 marker.setLatLng([long, lat])
@@ -160,7 +160,7 @@
                 $("#address-input").val(address)
             }
             if (getCookie("longitude") == null) {
-
+                mise_a_jour_map(48.856614, 2.3522219, "Paris")
             } else {
                 mise_a_jour_map(getCookie("longitude"), getCookie("latitude"), getCookie("address"))
             }
